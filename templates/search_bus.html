@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Bus</title>
+    <style>
+        body{
+            font-family:Arial,sans-serif;
+            background:#f4f6f9;
+            margin:0;
+        }
+
+        .header{
+            background:#1e3c72;
+            color:white;
+            text-align:center;
+            padding:20px;
+        }
+
+        .container{
+            width:400px;
+            margin:40px auto;
+            background:white;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0 0 10px rgba(0,0,0,0.2);
+            text-align:center;
+        }
+
+        input{
+            width:95%;
+            padding:10px;
+            margin:15px 0;
+            border-radius:5px;
+            border:1px solid #ccc;
+        }
+
+        button{
+            padding:10px 20px;
+            background:#1e3c72;
+            color:white;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+        }
+
+        table{
+            width:90%;
+            margin:30px auto;
+            border-collapse:collapse;
+            background:white;
+        }
+
+        th,td{
+            border:1px solid #ddd;
+            padding:10px;
+            text-align:center;
+        }
+
+        th{
+            background:#1e3c72;
+            color:white;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>🔍 Search Bus</h1>
+</div>
+
+<div class="container">
+    <form method="POST">
+        <input type="text" name="search" placeholder="Enter Bus Number">
+        <br>
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+{% if buses %}
+<table>
+<tr>
+    <th>ID</th>
+    <th>Bus Number</th>
+    <th>Driver</th>
+    <th>Route</th>
+</tr>
+
+{% for bus in buses %}
+<tr>
+    <td>{{ bus[0] }}</td>
+    <td>{{ bus[1] }}</td>
+    <td>{{ bus[2] }}</td>
+    <td>{{ bus[3] }}</td>
+</tr>
+{% endfor %}
+
+</table>
+{% endif %}
+
+</body>
+</html>

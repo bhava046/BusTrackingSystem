@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Bus</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background:#f4f6f9;
+            margin:0;
+        }
+
+        .header{
+            background:#1e3c72;
+            color:white;
+            text-align:center;
+            padding:20px;
+        }
+
+        .container{
+            width:400px;
+            margin:40px auto;
+            background:white;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0 0 10px rgba(0,0,0,0.2);
+        }
+
+        input, select{
+            width:100%;
+            padding:10px;
+            margin:10px 0;
+            border-radius:5px;
+            border:1px solid #ccc;
+            box-sizing:border-box;
+        }
+
+        button{
+            width:100%;
+            padding:12px;
+            background:#1e3c72;
+            color:white;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+            font-size:16px;
+            margin-top:15px;
+        }
+
+        button:hover{
+            background:#2a5298;
+        }
+
+        label{
+            font-weight:bold;
+            display:block;
+            margin-top:10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>➕ Add New Bus</h1>
+</div>
+
+<div class="container">
+
+<form action="/save_bus" method="POST">
+
+    <label>Bus Number</label>
+    <input type="text" name="bus_number" required>
+
+    <label>Driver Name</label>
+    <input type="text" name="driver_name" required>
+
+    <label>Route</label>
+    <input type="text" name="route" required>
+
+    <label>Latitude</label>
+    <input type="text" name="latitude" required>
+
+    <label>Longitude</label>
+    <input type="text" name="longitude" required>
+
+    <label>Driver Mobile</label>
+    <input type="text" name="driver_mobile" required>
+
+    <label>Bus Status</label>
+    <select name="status" required>
+        <option value="Running">🟢 Running</option>
+        <option value="Stopped">🔴 Stopped</option>
+        <option value="Maintenance">🟡 Maintenance</option>
+    </select>
+
+    <button type="submit">Save Bus</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

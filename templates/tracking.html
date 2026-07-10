@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Bus Tracking</title>
+
+    <link rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+    <style>
+        body{
+            margin:0;
+            font-family:Arial,sans-serif;
+            background:#f4f6f9;
+        }
+
+        .header{
+            background:#1e3c72;
+            color:white;
+            text-align:center;
+            padding:20px;
+        }
+
+        #map{
+            height:500px;
+            width:90%;
+            margin:20px auto;
+            border-radius:10px;
+            border:2px solid #1e3c72;
+        }
+
+        .bus-info{
+            width:90%;
+            margin:20px auto;
+            background:white;
+            padding:20px;
+            border-radius:10px;
+            box-shadow:0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .status-box{
+            width:90%;
+            margin:20px auto;
+            background:#e8f5e9;
+            padding:20px;
+            border-radius:10px;
+            border-left:6px solid green;
+            box-shadow:0 2px 10px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>🚌 Live Bus Tracking</h1>
+</div>
+
+<div id="map"></div>
+
+<div class="bus-info">
+    <h2>Bus Details</h2>
+    <p><b>Bus Number:</b> TN38AB1234</p>
+    <p><b>Driver:</b> Ramesh</p>
+    <p><b>Route:</b> Coimbatore → Erode</p>
+    <p><b>Status:</b> 🟢 Running</p>
+</div>
+
+<div class="status-box">
+    <h3>Current Status</h3>
+    <p>📍 Bus is currently moving</p>
+    <p>🕒 Live Location Updated</p>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+
+var map = L.map('map').setView([11.0168, 76.9558], 13);
+
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19
+}).addTo(map);
+
+var busMarker = L.marker([11.0168, 76.9558])
+.addTo(map)
+.bindPopup("<b>TN38AB1234</b><br>Bus is Running")
+.openPopup();
+
+var route = L.polyline([
+    [11.0168, 76.9558],
+    [11.0250, 76.9650],
+    [11.0350, 76.9750]
+], {
+    color: 'blue',
+    weight: 5
+}).addTo(map);
+
+map.fitBounds(route.getBounds());
+
+setInterval(function(){
+
+    let lat = 11.0168 + (Math.random() * 0.01);
+    let lng = 76.9558 + (Math.random() * 0.01);
+
+    busMarker.setLatLng([lat, lng]);
+
+}, 5000);
+
+</script>
+
+</body>
+</html>

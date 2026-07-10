@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Bus</title>
+
+    <style>
+        body{
+            font-family:Arial,sans-serif;
+            background:#f4f6f9;
+            margin:0;
+        }
+
+        .header{
+            background:#1e3c72;
+            color:white;
+            text-align:center;
+            padding:20px;
+        }
+
+        .container{
+            width:400px;
+            margin:40px auto;
+            background:white;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0 0 10px rgba(0,0,0,0.2);
+        }
+
+        input, select{
+            width:100%;
+            padding:10px;
+            margin:10px 0;
+            border:1px solid #ccc;
+            border-radius:5px;
+            box-sizing:border-box;
+        }
+
+        label{
+            font-weight:bold;
+            display:block;
+            margin-top:10px;
+        }
+
+        button{
+            width:100%;
+            padding:12px;
+            background:#1e3c72;
+            color:white;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+            font-size:16px;
+            margin-top:15px;
+        }
+
+        button:hover{
+            background:#2a5298;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>✏ Edit Bus</h1>
+</div>
+
+<div class="container">
+
+<form action="/update_bus/{{ bus[0] }}" method="POST">
+
+<label>Bus Number</label>
+<input type="text" name="bus_number" value="{{ bus[1] }}" required>
+
+<label>Driver Name</label>
+<input type="text" name="driver_name" value="{{ bus[2] }}" required>
+
+<label>Route</label>
+<input type="text" name="route" value="{{ bus[3] }}" required>
+
+<label>Driver Mobile</label>
+<input type="text" name="driver_mobile" value="{{ bus[4] }}" required>
+
+<label>Bus Status</label>
+<select name="status" required>
+    <option value="Running" {% if bus[5]=='Running' %}selected{% endif %}>🟢 Running</option>
+    <option value="Stopped" {% if bus[5]=='Stopped' %}selected{% endif %}>🔴 Stopped</option>
+    <option value="Maintenance" {% if bus[5]=='Maintenance' %}selected{% endif %}>🟡 Maintenance</option>
+</select>
+
+<button type="submit">Update Bus</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

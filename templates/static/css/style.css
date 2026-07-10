@@ -1,0 +1,59 @@
+from flask import Flask, render_template, request, redirect
+
+app = Flask(__name__)
+
+@app.route('/')
+def login():
+    return render_template('login.html')
+
+@app.route('/check_login', methods=['POST'])
+def check_login():
+
+    username = request.form['username']
+    password = request.form['password']
+
+    if username == "admin" and password == "admin123":
+        return redirect('/dashboard')
+    else:
+        return "Invalid Username or Password"
+
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html')
+
+@app.route('/tracking')
+def tracking():
+    return render_template('tracking.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
+.running{
+    background:#28a745;
+    color:white;
+    padding:5px 10px;
+    border-radius:20px;
+    font-weight:bold;
+}
+
+.stopped{
+    background:#dc3545;
+    color:white;
+    padding:5px 10px;
+    border-radius:20px;
+    font-weight:bold;
+}
+
+.maintenance{
+    background:#ffc107;
+    color:black;
+    padding:5px 10px;
+    border-radius:20px;
+    font-weight:bold;
+}
+select{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    border-radius:5px;
+    border:1px solid #ccc;
+}
